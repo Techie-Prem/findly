@@ -1,0 +1,53 @@
+:root{--ink:#111;--muted:#666;--line:#e8e8e8;--accent:#0b6e61;--soft:#f6f6f6}
+*{box-sizing:border-box}
+body{margin:0;font-family:Inter,system-ui,-apple-system,sans-serif;background:#fff;color:var(--ink);line-height:1.5}
+a{color:var(--ink);text-decoration:none}a:hover{color:var(--accent)}
+.wrap{max-width:1120px;margin:0 auto;padding:0 24px}
+.nav{display:flex;flex-wrap:wrap;gap:16px;justify-content:space-between;align-items:center;padding:24px 0;border-bottom:1px solid var(--line)}
+.logo{font-weight:700;font-size:18px}
+.nav-links{display:flex;gap:28px;align-items:center;font-size:14px;color:#555;flex-wrap:wrap}
+.btn,button{font:inherit;font-weight:500;font-size:15px;min-height:48px;padding:0 24px;background:var(--ink);color:#fff;border:0;border-radius:8px;cursor:pointer;display:inline-flex;align-items:center;justify-content:center}
+.btn:hover,button:hover{background:#000;color:#fff}
+.btn-sm{min-height:44px;padding:0 20px;font-size:14px}
+.hero{padding:96px 0 64px;max-width:720px}
+.eyebrow{font-size:13px;color:var(--accent);font-weight:600;letter-spacing:.06em;text-transform:uppercase}
+h1{font-size:clamp(36px,6vw,56px);line-height:1.05;letter-spacing:-.03em;margin:16px 0 20px}
+h2{font-size:28px;letter-spacing:-.02em;margin:0 0 8px}
+.lead{font-size:18px;color:#555;margin:0 0 32px}
+.search{display:flex;gap:12px;flex-wrap:wrap}
+input,textarea{width:100%;font:inherit;font-size:15px;padding:0 14px;height:48px;border:1px solid #d4d4d4;border-radius:8px;background:#fff;margin-top:6px}
+textarea{height:auto;padding:12px 14px;resize:vertical}
+input:focus,textarea:focus{outline:2px solid var(--accent);outline-offset:1px;border-color:var(--accent)}
+.search input{flex:1 1 320px;height:52px;margin:0}
+.section{padding:48px 0;border-top:1px solid var(--line)}
+.head{display:flex;flex-wrap:wrap;gap:16px;justify-content:space-between;align-items:center;margin-bottom:24px}
+.chips{display:flex;gap:8px;flex-wrap:wrap}
+.chip{font-size:13px;padding:0 16px;min-height:44px;display:inline-flex;align-items:center;border:1px solid #ddd;border-radius:999px;color:#333}
+.chip.on{background:var(--ink);border-color:var(--ink);color:#fff}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:20px}
+.card{display:block;border:1px solid var(--line);border-radius:12px;padding:20px}
+.card:hover{border-color:#bbb;color:var(--ink)}
+.ph{width:100%;height:140px;background:var(--soft);border-radius:8px;margin-bottom:16px;object-fit:cover;display:flex;align-items:center;justify-content:center}
+.row{display:flex;justify-content:space-between;align-items:center;gap:8px}
+.status{font-size:12px;border:1px solid #ddd;border-radius:999px;padding:2px 10px;color:#444;white-space:nowrap}
+.muted{color:var(--muted);font-size:14px}
+.steps{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:24px;margin-top:32px}
+.step{border-top:2px solid var(--ink);padding-top:16px}
+.step small{color:var(--muted);font-size:13px}
+.step b{display:block;margin:6px 0}
+.step span{font-size:14px;color:#555}
+.band{margin:0 0 64px;padding:48px;border:1px solid var(--line);border-radius:16px;display:flex;flex-wrap:wrap;gap:32px;justify-content:space-between;align-items:center}
+.msg{margin:16px 0 0;padding:12px 16px;border:1px solid #f1c6c2;background:#fff7f6;color:#b3261e;border-radius:8px;font-size:14px}
+.detail{display:flex;flex-wrap:wrap;gap:48px;padding:56px 0}
+.detail>div{flex:1 1 380px;min-width:0}
+.panel{border:1px solid var(--line);border-radius:16px;padding:32px;max-width:460px}
+.panel label,.form label{display:block;font-size:13px;color:#555;margin-bottom:16px}
+.panel button{width:100%}
+input[type="file"]{padding:8px 0;border:none;background:transparent;height:auto;cursor:pointer}
+.photo{width:100%;height:320px;background:var(--soft);border-radius:12px;object-fit:cover;display:flex;align-items:center;justify-content:center}
+.tracker{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:8px;margin-top:32px}
+.tracker div{border-top:2px solid #ddd;padding-top:8px;font-size:12px;color:var(--muted)}
+.tracker div.done{border-color:var(--ink);color:var(--ink);font-weight:600}
+.box{border:1px solid var(--line);border-radius:12px;padding:16px 20px;margin:16px 0}
+.form{max-width:520px;padding:56px 0}
+footer{padding:24px 0 48px;border-top:1px solid var(--line);display:flex;flex-wrap:wrap;gap:16px;justify-content:space-between;font-size:13px;color:var(--muted)}

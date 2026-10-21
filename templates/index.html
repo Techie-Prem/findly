@@ -1,0 +1,60 @@
+{% extends "base.html" %}
+{% block body %}
+<section class="hero">
+  <div class="eyebrow">Campus lost &amp; found</div>
+  <h1>Lost something? Let’s get it back to you.</h1>
+  <p class="lead">Browse items found around campus, or report one you picked up. Every claim is checked with proof of ownership before anything is handed over.</p>
+  <form class="search" action="{{ url_for('index') }}#items" method="get">
+    <label class="sr" style="position:absolute;left:-9999px" for="q">Search found items</label>
+    <input id="q" name="q" value="{{ q }}" placeholder="Search wallet, keys, ID card…">
+    <button>Search</button>
+  </form>
+</section>
+
+<section class="section" id="items">
+  <div class="head">
+    <h2>{% if q or status %}Results{% else %}Recently found{% endif %}</h2>
+    <div class="chips">
+      <a class="chip {{ 'on' if not status }}" href="{{ url_for('index', q=q or None) }}#items">All</a>
+      {% for s in steps[:3] %}
+      <a class="chip {{ 'on' if status == s }}" href="{{ url_for('index', q=q or None, status=s) }}#items">{{ s.title() }}</a>
+      {% endfor %}
+    </div>
+  </div>
+  {% if not items %}
+    <p class="muted">{% if q or status %}No items match your search.{% else %}No items yet. Report the first found item.{% endif %}</p>
+  {% else %}
+  <div class="grid">
+    {% for i in items %}
+    <a class="card" href="{{ url_for('item_page', item_id=i.id) }}">
+      {% if i.image %}
+        <img class="ph" src="{{ url_for('static', filename='uploads/' + i.image) }}" alt="{{ i.name }}">
+      {% else %}
+        <div class="ph ph-empty">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#bbb" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
+        </div>
+      {% endif %}
+      <div class="row"><strong>{{ i.name }}</strong><span class="status">{{ i.status }}</span></div>
+      <div class="muted" style="margin-top:6px">Found at {{ i.location }}</div>
+    </a>
+    {% endfor %}
+  </div>
+  {% endif %}
+</section>
+
+<section class="section" id="how">
+  <h2>Every item follows four steps</h2>
+  <p class="muted">No step can be skipped, so nothing is handed over by accident.</p>
+  <div class="steps">
+    <div class="step"><small>01 · Reported</small><b>Someone logs a found item</b><span>Name, description and where it was found. Private details stay off the page.</span></div>
+    <div class="step"><small>02 · Matched</small><b>An owner submits proof</b><span>The claimant gives their name and something only the owner would know.</span></div>
+    <div class="step"><small>03 · Claimed</small><b>Handed over in person</b><span>The finder checks the proof and returns the item.</span></div>
+    <div class="step"><small>04 · Closed</small><b>Case closed</b><span>The record is kept for reference and can’t be reopened.</span></div>
+  </div>
+</section>
+
+<section class="band">
+  <div style="max-width:520px"><h2>Found something?</h2><p class="muted" style="font-size:16px;margin:0">Report it in under a minute. Skip details only the owner should know, such as what’s inside a wallet.</p></div>
+  <a class="btn" href="{{ url_for('report') }}">Report a found item</a>
+</section>
+{% endblock %}

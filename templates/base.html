@@ -1,0 +1,26 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>{% block title %}Findly · Campus Lost &amp; Found{% endblock %}</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap">
+<link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+<div class="wrap">
+  <header class="nav">
+    <a class="logo" href="{{ url_for('index') }}">Findly</a>
+    <nav class="nav-links">
+      <a href="{{ url_for('index') }}#items">Browse</a>
+      <a href="{{ url_for('index') }}#how">How it works</a>
+      <a class="btn btn-sm" href="{{ url_for('report') }}">Report an item</a>
+    </nav>
+  </header>
+  {% for m in get_flashed_messages() %}<div class="msg" role="alert">{{ m }}</div>{% endfor %}
+  {% block body %}{% endblock %}
+  <footer><span>Findly · Campus Lost &amp; Found</span><span>Built with Flask and SQLite</span></footer>
+</div>
+</body>
+</html>

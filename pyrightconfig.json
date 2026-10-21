@@ -1,0 +1,8 @@
+{
+  "venvPath": "C:\\Users\\Prem\\Downloads\\findly",
+  "venv": ".venv",
+  "extraPaths": [
+    ".",
+    "C:\\Users\\Prem\\Downloads\\findly\\.venv\\Lib\\site-packages"
+  ]
+}

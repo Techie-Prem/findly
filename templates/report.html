@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+{% block title %}Report an item · Findly{% endblock %}
+{% block body %}
+<div class="form">
+  <h1 style="font-size:40px">Report a found item</h1>
+  <p class="muted" style="margin-bottom:32px">Do not write details that only the owner should know.</p>
+  <form method="post" enctype="multipart/form-data">
+    <label>Item name <input name="name" placeholder="e.g. Black leather wallet"></label>
+    <label>Description <textarea name="description" rows="3" placeholder="Colour, size, marks"></textarea></label>
+    <label>Where found <input name="location" placeholder="e.g. Library, 2nd floor"></label>
+    <label>Photo (optional)
+      <input type="file" name="image" id="imageInput" accept="image/*">
+    </label>
+    <div id="imagePreview" style="display:none;margin-bottom:16px;">
+      <img id="previewImg" src="" alt="Preview" style="max-height:180px;border-radius:8px;object-fit:cover;border:1px solid #ddd;">
+    </div>
+    <button>Submit</button>
+  </form>
+</div>
+<script>
+  const input = document.getElementById('imageInput');
+  const preview = document.getElementById('imagePreview');
+  const previewImg = document.getElementById('previewImg');
+  if (input) {
+    input.addEventListener('change', function() {
+      const file = this.files[0];
+      if (file) {
+        previewImg.src = URL.createObjectURL(file);
+        preview.style.display = 'block';
+      } else {
+        preview.style.display = 'none';
+      }
+    });
+  }
+</script>
+{% endblock %}

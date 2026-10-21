@@ -1,0 +1,44 @@
+{% extends "base.html" %}
+{% block title %}{{ item.name }} · Findly{% endblock %}
+{% block body %}
+<div class="detail">
+  <div>
+    {% if item.image %}
+      <img class="photo" src="{{ url_for('static', filename='uploads/' + item.image) }}" alt="{{ item.name }}">
+    {% else %}
+      <div class="photo photo-empty">
+        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="#bbb" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
+      </div>
+    {% endif %}
+    <h1 style="font-size:40px;margin:28px 0 8px">{{ item.name }}</h1>
+    <p style="color:#555;margin:0 0 12px">{{ item.description }}</p>
+    <div class="muted">Found at {{ item.location }} &nbsp;·&nbsp; <span class="status">{{ item.status }}</span></div>
+    {% set idx = steps.index(item.status) %}
+    <div class="tracker" aria-label="Progress">
+      {% for s in steps %}<div class="{{ 'done' if loop.index0 <= idx }}">{{ s.title() }}</div>{% endfor %}
+    </div>
+  </div>
+  <div>
+    {% if item.status == 'REPORTED' %}
+    <div class="panel">
+      <h2 style="font-size:20px">Is this yours?</h2>
+      <p class="muted" style="margin:0 0 24px">Share something only the owner would know. The finder reviews it before handing the item over.</p>
+      <form method="post" action="{{ url_for('claim', item_id=item.id) }}">
+        <label>Your name <input name="claimant"></label>
+        <label>Proof of ownership <textarea name="proof" rows="3"></textarea></label>
+        <button>Claim</button>
+      </form>
+    </div>
+    {% else %}
+    <div class="box"><div class="muted">Claimed by</div>{{ item.claimant }}
+      <div class="muted" style="margin-top:8px">Proof</div>{{ item.proof }}</div>
+    {% endif %}
+
+    {% if item.status == 'MATCHED' %}
+    <form method="post" action="{{ url_for('handover', item_id=item.id) }}"><button>Hand over to owner</button></form>
+    {% elif item.status == 'CLAIMED' %}
+    <form method="post" action="{{ url_for('close', item_id=item.id) }}"><button>Close case</button></form>
+    {% endif %}
+  </div>
+</div>
+{% endblock %}
